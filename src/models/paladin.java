@@ -10,11 +10,16 @@ import java.util.Random;
 public class paladin extends Personaje {
 
     static public final int gillotineataque = 5;
+    public static final int ataquepaladinBase = 20;
+    
+    public paladin(String nombre) {
+        super(Personaje.vidaMax, ataquepaladinBase, nombre);
+    }
 
     public paladin(int pt_vida, int pt_ataque, String nombre) {
         super(pt_vida, pt_ataque, nombre);
     }
-
+    
     @Override
     public void atacar(Personaje objetivo) {
         if (objetivo != null && !objetivo.equals(this) && objetivo instanceof Aldeano) {

@@ -5,6 +5,8 @@
  */
 package UI;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author verena312
@@ -16,6 +18,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -27,25 +31,110 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jdlogin = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        TfUsuario = new javax.swing.JTextField();
+        Btentrar = new javax.swing.JButton();
+        Inicio = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
+        jdlogin.setModal(true);
+        jdlogin.setResizable(false);
+
+        jLabel1.setText("Usuario");
+
+        TfUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                none(evt);
+            }
+        });
+        TfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TfUsuarioKeyReleased(evt);
+            }
+        });
+
+        Btentrar.setText("Entrar");
+        Btentrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtentrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jdloginLayout = new javax.swing.GroupLayout(jdlogin.getContentPane());
+        jdlogin.getContentPane().setLayout(jdloginLayout);
+        jdloginLayout.setHorizontalGroup(
+            jdloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdloginLayout.createSequentialGroup()
+                .addGroup(jdloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdloginLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jdloginLayout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(Btentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        jdloginLayout.setVerticalGroup(
+            jdloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdloginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jdloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(TfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Btentrar)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Guau");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icons/Logo.png")).getImage());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Inicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/icons/Logo.png"))); // NOI18N
+        Inicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InicioMouseClicked(evt);
+            }
+        });
+        getContentPane().add(Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 100, 100));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/icons/background.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InicioMouseClicked
+        
+        this.jdlogin.setLocationRelativeTo(this);
+        this.jdlogin.pack();
+        this.jdlogin.setVisible(true);
+              
+        
+        
+        
+    }//GEN-LAST:event_InicioMouseClicked
+
+    private void none(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_none
+        // TODO add your handling code here:
+    }//GEN-LAST:event_none
+
+    private void BtentrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtentrarMouseClicked
+       this.dispose();
+       this.jdlogin.dispose();
+       new Lobby(TfUsuario.getText()).setVisible(true);
+    }//GEN-LAST:event_BtentrarMouseClicked
+
+    private void TfUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TfUsuarioKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            BtentrarMouseClicked(null);       
+        }
+    }//GEN-LAST:event_TfUsuarioKeyReleased
 
     /**
      * @param args the command line arguments
@@ -83,6 +172,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btentrar;
+    private javax.swing.JLabel Inicio;
+    private javax.swing.JTextField TfUsuario;
     private javax.swing.JLabel fondo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDialog jdlogin;
     // End of variables declaration//GEN-END:variables
 }

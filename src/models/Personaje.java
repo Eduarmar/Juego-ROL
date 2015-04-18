@@ -13,7 +13,8 @@ public class Personaje {
     
     static public final int vidaMax = 100;
     
-    private int pt_vida;
+    
+    private int pt_vida = vidaMax;
     private int pt_ataque;
     private String nombre;
 

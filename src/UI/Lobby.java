@@ -5,9 +5,11 @@
  */
 package UI;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.bind.annotation.XmlElement;
 import models.*;
@@ -19,8 +21,14 @@ import models.*;
 public class Lobby extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
-
     List<Personaje> listaPersonaje = new ArrayList<>();
+
+    private int contadorPersonajes = 6;
+
+    DefaultTableModel modelo1;
+    List<Personaje> listaPersonaje1 = new ArrayList<>();
+
+    private int contadorPersonajes1 = 6;
 
     /**
      * Creates new form Lobby
@@ -29,7 +37,7 @@ public class Lobby extends javax.swing.JFrame {
         initComponents();
 
         modelo = (DefaultTableModel) Tabla.getModel();
-
+        modelo1 = (DefaultTableModel) Tabla1.getModel();
         this.setTitle("Bienvenido Sr. " + nombreUsuario);
         this.setLocationRelativeTo(null);
     }
@@ -52,12 +60,25 @@ public class Lobby extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Lbimagen = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        tbpeq = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable() {
             public Class getColumnClass(int column){
                 return getValueAt(0, column).getClass();
             }
         };
+        jLabel4 = new javax.swing.JLabel();
+        tfeq1 = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tabla1 = new javax.swing.JTable() {
+            public Class getColumnClass(int column){
+                return getValueAt(0, column).getClass();
+            }
+        };
+        jLabel5 = new javax.swing.JLabel();
+        tfeq2 = new javax.swing.JTextField();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,6 +89,12 @@ public class Lobby extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
         jLabel1.setText("Nombre");
+
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfNombreKeyReleased(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
         jLabel2.setText("Tipo");
@@ -137,7 +164,7 @@ public class Lobby extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Nuevo Personaje", jPanel1);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 290, 310));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 290, 310));
 
         Tabla.setBackground(new java.awt.Color(0, 0, 0));
         Tabla.setFont(new java.awt.Font("Ravie", 0, 14)); // NOI18N
@@ -158,17 +185,138 @@ public class Lobby extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        Tabla.setToolTipText("Selecione un Pj para Borrar con Del.");
         Tabla.setGridColor(new java.awt.Color(255, 153, 0));
         Tabla.setRowHeight(130);
         Tabla.setSelectionForeground(new java.awt.Color(255, 0, 0));
         Tabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         Tabla.setShowHorizontalLines(false);
+        Tabla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TablaKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabla);
         if (Tabla.getColumnModel().getColumnCount() > 0) {
             Tabla.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 430, 560));
+        jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
+        jLabel4.setText("Nombre De Equipo 1");
+
+        tfeq1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfeq1KeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfeq1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 20, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfeq1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(506, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 72, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        tbpeq.addTab("Team 1", jPanel2);
+
+        Tabla1.setBackground(new java.awt.Color(0, 0, 0));
+        Tabla1.setFont(new java.awt.Font("Ravie", 0, 14)); // NOI18N
+        Tabla1.setForeground(new java.awt.Color(153, 0, 153));
+        Tabla1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Ataque", "Vida", "Tipo", "Imagen"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Tabla1.setToolTipText("Selecione un Pj para Borrar con Del.");
+        Tabla1.setGridColor(new java.awt.Color(255, 153, 0));
+        Tabla1.setRowHeight(130);
+        Tabla1.setSelectionForeground(new java.awt.Color(255, 0, 0));
+        Tabla1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        Tabla1.setShowHorizontalLines(false);
+        Tabla1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Tabla1KeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Tabla1);
+        if (Tabla1.getColumnModel().getColumnCount() > 0) {
+            Tabla1.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
+        jLabel5.setText("Nombre De Equipo 2");
+
+        tfeq2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfeq2KeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfeq2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 20, Short.MAX_VALUE)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfeq2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(506, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addGap(0, 72, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        tbpeq.addTab("Team 2", jPanel4);
+
+        getContentPane().add(tbpeq, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 440, 580));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/icons/background.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -197,49 +345,113 @@ public class Lobby extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
+        if ((tbpeq.getSelectedIndex()==0 && contadorPersonajes == 0) || (tbpeq.getSelectedIndex()==1 &&contadorPersonajes1 == 0)) {
+            JOptionPane.showMessageDialog(this, "Ya no puede mas personajes");
+            return;
+        }
+        if (tfNombre.getText().equals("")) {
+            tfNombre.requestFocus();
+            return;
+        }
+
+        Personaje p=null;
+        String tipo="";
+        
         switch ((String) cdRol.getSelectedItem()) {
             case "Aldeano":
-                Aldeano aldeano = new Aldeano(tfNombre.getText());
-                listaPersonaje.add(aldeano);
-                modelo.addRow(new Object[]{
-                    aldeano.getNombre(),
-                    aldeano.getPt_ataque(),
-                    aldeano.getPt_vida(),
-                    "Aldeano",
-                    new javax.swing.ImageIcon(getClass().getResource("/Resources/characters/Aldeano.jpg"))
-                   
-                });
+                p = new Aldeano(tfNombre.getText());
+                
+                tipo = "Aldeano";
                 break;
 
             case "Mago":
-                Mago mago = new Mago(tfNombre.getText());
-                listaPersonaje.add(mago);
-                modelo.addRow(new Object[]{
-                    mago.getNombre(),
-                    mago.getPt_ataque(),
-                    mago.getPt_vida(),
-                    "Mago",
-                    
-                    new javax.swing.ImageIcon(getClass().getResource("/Resources/characters/Mago.jpg"))
-                });
+                p = new Mago(tfNombre.getText());
+               
+                tipo = "Mago";
                 break;
             case "Paladin":
-                paladin paladin = new paladin(tfNombre.getText());
-                listaPersonaje.add(paladin);
-                modelo.addRow(new Object[]{
-                    paladin.getNombre(),
-                    paladin.getPt_ataque(),
-                    paladin.getPt_vida(),
-                    "Paladin",
-                    new javax.swing.ImageIcon(getClass().getResource("/Resources/characters/rsz_paladin.jpg"))
-                   
-                });
+                p = new paladin(tfNombre.getText());
+                
+                tipo="rsz_paladin";
 
                 break;
 
         }
+        switch (tbpeq.getSelectedIndex()) {
+            case 0:
+                 modelo.addRow(new Object[]{
+                    p.getNombre(),
+                    p.getPt_ataque(),
+                    p.getPt_vida(),
+                    tipo,
+                    new javax.swing.ImageIcon(getClass().getResource("/Resources/characters/"+tipo+".jpg"))
 
+                });
+                listaPersonaje.add(p);
+                contadorPersonajes--;
+                 break;
+        
+            case 1:
+                 modelo1.addRow(new Object[]{
+                    p.getNombre(),
+                    p.getPt_ataque(),
+                    p.getPt_vida(),
+                    tipo,
+                    new javax.swing.ImageIcon(getClass().getResource("/Resources/characters/"+tipo+".jpg"))
+
+                });
+                listaPersonaje1.add(p);
+                 contadorPersonajes1--;
+                 break;
+        }
+
+        tfNombre.setText("");
+
+       
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void TablaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TablaKeyReleased
+        if (Tabla.getSelectedRow() == -1) {
+            return;
+        }
+        int fila = Tabla.getSelectedRow();
+
+        if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
+            modelo.removeRow(fila);
+            listaPersonaje.remove(fila);
+            contadorPersonajes++;
+        }
+
+
+    }//GEN-LAST:event_TablaKeyReleased
+
+    private void tfNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jButton1MouseClicked(null);
+        }
+    }//GEN-LAST:event_tfNombreKeyReleased
+
+    private void tfeq1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfeq1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfeq1KeyReleased
+
+    private void Tabla1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tabla1KeyReleased
+        if (Tabla1.getSelectedRow() == -1) {
+            return;
+        }
+        int fila = Tabla1.getSelectedRow();
+
+        if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
+            modelo1.removeRow(fila);
+            listaPersonaje1.remove(fila);
+            contadorPersonajes1++;
+        }
+
+    }//GEN-LAST:event_Tabla1KeyReleased
+
+    private void tfeq2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfeq2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfeq2KeyReleased
 
     /**
      * @param args the command line arguments
@@ -279,15 +491,24 @@ public class Lobby extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Lbimagen;
     private javax.swing.JTable Tabla;
+    private javax.swing.JTable Tabla1;
     private javax.swing.JComboBox cdRol;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane tbpeq;
     private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfeq1;
+    private javax.swing.JTextField tfeq2;
     // End of variables declaration//GEN-END:variables
 }

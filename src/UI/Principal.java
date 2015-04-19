@@ -6,6 +6,16 @@
 package UI;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.Cuenta;
 
 /**
  *
@@ -13,13 +23,34 @@ import java.awt.event.KeyEvent;
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
+    private List<Cuenta> cuentas;
+
     public Principal() {
+        FileOutputStream fos = null;
         initComponents();
         setLocationRelativeTo(null);
+         /*      
+        cuentas =new ArrayList<>();
+        cuentas.add(new Cuenta("sync", "1234"));
         
+        try {
+
+            fos = new FileOutputStream(getClass().getResource("/Resources/Data/Cuentas.data").getPath());
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(cuentas);
+            oos.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
+
     }
 
     /**
@@ -31,63 +62,11 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jdlogin = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
-        TfUsuario = new javax.swing.JTextField();
-        Btentrar = new javax.swing.JButton();
         Inicio = new javax.swing.JLabel();
+        TfUsuario = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        Btentrar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
-
-        jdlogin.setModal(true);
-        jdlogin.setResizable(false);
-
-        jLabel1.setText("Usuario");
-
-        TfUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                none(evt);
-            }
-        });
-        TfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                TfUsuarioKeyReleased(evt);
-            }
-        });
-
-        Btentrar.setText("Entrar");
-        Btentrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtentrarMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jdloginLayout = new javax.swing.GroupLayout(jdlogin.getContentPane());
-        jdlogin.getContentPane().setLayout(jdloginLayout);
-        jdloginLayout.setHorizontalGroup(
-            jdloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdloginLayout.createSequentialGroup()
-                .addGroup(jdloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jdloginLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jdloginLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(Btentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-        jdloginLayout.setVerticalGroup(
-            jdloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdloginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jdloginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(TfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Btentrar)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Guau");
@@ -101,7 +80,34 @@ public class Principal extends javax.swing.JFrame {
                 InicioMouseClicked(evt);
             }
         });
-        getContentPane().add(Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 100, 100));
+        getContentPane().add(Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 100, 100));
+
+        TfUsuario.setFont(new java.awt.Font("Perpetua Titling MT", 3, 18)); // NOI18N
+        TfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TfUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                none(evt);
+            }
+        });
+        TfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TfUsuarioKeyReleased(evt);
+            }
+        });
+        getContentPane().add(TfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 230, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(47, 24, 213));
+        jLabel1.setText("Usuario");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 90, 50));
+
+        Btentrar.setText("Entrar");
+        Btentrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtentrarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(Btentrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/icons/background.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -110,14 +116,11 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InicioMouseClicked
-        
-        this.jdlogin.setLocationRelativeTo(this);
-        this.jdlogin.pack();
-        this.jdlogin.setVisible(true);
-              
-        
-        
-        
+
+        this.dispose();
+        new Lobby(TfUsuario.getText()).setVisible(true);
+
+
     }//GEN-LAST:event_InicioMouseClicked
 
     private void none(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_none
@@ -125,14 +128,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_none
 
     private void BtentrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtentrarMouseClicked
-       this.dispose();
-       this.jdlogin.dispose();
-       new Lobby(TfUsuario.getText()).setVisible(true);
+        this.dispose();
+        new Lobby(TfUsuario.getText()).setVisible(true);
     }//GEN-LAST:event_BtentrarMouseClicked
 
     private void TfUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TfUsuarioKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            BtentrarMouseClicked(null);       
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtentrarMouseClicked(null);
         }
     }//GEN-LAST:event_TfUsuarioKeyReleased
 
@@ -177,6 +179,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField TfUsuario;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JDialog jdlogin;
     // End of variables declaration//GEN-END:variables
 }

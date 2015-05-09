@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Cuenta;
+import utilities.Audio;
 
 /**
  *
@@ -24,12 +25,16 @@ import models.Cuenta;
 public class Principal extends javax.swing.JFrame {
 
     private List<Cuenta> cuentas;
-
+    private Audio backGroundSound;
     public Principal() {
         FileOutputStream fos = null;
         initComponents();
         setLocationRelativeTo(null);
-         /*      
+        
+        backGroundSound = new Audio(getClass().getResource("/Resources/sound/Backsound.wav"));
+        backGroundSound.loop();
+        
+        /*      
         cuentas =new ArrayList<>();
         cuentas.add(new Cuenta("sync", "1234"));
         
